@@ -1,0 +1,32 @@
+resilience4j.circuitbreaker:
+  instances:
+    weatherservice:
+      registerHealthIndicator: true
+      slidingWindowSize: 1
+      permittedNumberOfCallsInHalfOpenState: 3
+      slidingWindowType: COUNT_BASED
+      minimumNumberOfCalls: 1
+      waitDurationInOpenState: 10s
+      failureRateThreshold: 50
+      eventConsumerBufferSize: 10
+      recordFailurePredicate: io.github.robwin.exception.RecordFailurePredicate
+
+resilience4j.bulkhead:
+  instances:
+    weatherservice:
+      maxConcurrentCalls: 10
+      maxWaitDuration: 100ms
+
+resilience4j.thread-pool-bulkhead:
+  instances:
+    weatherservice:
+      maxThreadPoolSize: 1
+      coreThreadPoolSize: 1
+      queueCapacity: 1
+      writableStackTraceEnabled: true
+
+resilience4j.timelimiter:
+  instances:
+    weatherservice:
+      timeoutDuration: 1ms
+      cancelRunningFuture: true

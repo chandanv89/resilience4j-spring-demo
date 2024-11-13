@@ -1,0 +1,5 @@
+server.port: 8091
+
+spring:
+  application:
+    name: resilience4j-spring-demo
